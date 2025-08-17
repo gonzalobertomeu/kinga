@@ -1,0 +1,23 @@
+services:
+  base:
+    build:
+      context: .
+      dockerfile: base.dockerfile
+  auth:
+    build:
+      context: .
+      dockerfile: auth.dockerfile
+    volumes:
+      - ./auth:/app
+    working_dir: /app
+    command: npm run dev
+    depends_on:
+      - base
+  api:
+    image: base
+    volumes:
+      - ./api:/app
+    working_dir: /app
+    command: npm run dev
+    depends_on:
+      - base

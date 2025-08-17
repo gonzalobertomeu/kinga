@@ -1,0 +1,19 @@
+{
+  "name": "kinga",
+  "version": "1.0.0",
+  "description": "Raspberry Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gonzalo Bertomeu",
+  "license": "ISC",
+  "dependencies": {
+    "turbo": "^2.5.6"
+  },
+  "workspaces": [
+    "services/*",
+    "gateways/*"
+  ],
+  "packageManager": "npm@10.5.2"
+}
