@@ -9,3 +9,5 @@ out/
 !.env.example
 .DS_Store
 coverage/
+storybook-static/
+*storybook.log
