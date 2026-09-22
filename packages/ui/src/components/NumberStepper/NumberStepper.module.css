@@ -1,0 +1,80 @@
+/* Mono display between two keys, in one housing. */
+.stepper {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid var(--kinga-border);
+  border-radius: var(--kinga-radius);
+  overflow: hidden;
+}
+
+.key {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  min-height: calc(2.25rem - 2px);
+  padding: 0;
+  border: none;
+  background: var(--kinga-control);
+  box-shadow: var(--kinga-key-edge);
+  color: var(--kinga-fg);
+  font-family: var(--kinga-font-mono);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    transform 60ms ease-out,
+    box-shadow 60ms ease-out;
+}
+
+.key:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.key:focus-visible {
+  outline: 2px solid var(--kinga-fg);
+  outline-offset: -4px;
+}
+
+.key:disabled {
+  color: color-mix(in srgb, var(--kinga-fg) 35%, transparent);
+  cursor: not-allowed;
+}
+
+.input {
+  appearance: textfield;
+  box-sizing: content-box;
+  width: calc(var(--_digits) * 1ch);
+  margin: 0;
+  padding: 0 var(--kinga-space-3);
+  border: none;
+  border-right: 1px solid var(--kinga-border);
+  border-left: 1px solid var(--kinga-border);
+  background: var(--kinga-surface);
+  color: var(--kinga-fg);
+  font-family: var(--kinga-font-mono);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.input::-webkit-inner-spin-button,
+.input::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--kinga-primary);
+  outline-offset: -2px;
+}
+
+.stepper:has(.input[aria-invalid="true"]) {
+  border-color: var(--kinga-danger);
+}
+
+.stepper:has(.input:disabled) {
+  opacity: 0.4;
+}

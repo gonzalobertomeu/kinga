@@ -1,0 +1,36 @@
+.input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-height: 2.25rem;
+  border: 1px solid var(--kinga-border);
+  border-radius: var(--kinga-radius);
+  background: var(--kinga-surface);
+  color: var(--kinga-fg);
+  padding: 0 0.75rem;
+  font-family: var(--kinga-font-sans);
+  font-size: 0.875rem;
+}
+
+.input::placeholder {
+  color: var(--kinga-muted);
+}
+
+.input:hover:not(:disabled) {
+  border-color: var(--kinga-muted);
+}
+
+.input:focus-visible {
+  border-color: var(--kinga-fg);
+  outline: 2px solid var(--kinga-primary);
+  outline-offset: 1px;
+}
+
+.input[aria-invalid="true"] {
+  border-color: var(--kinga-danger);
+}
+
+.input:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

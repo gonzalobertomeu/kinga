@@ -1,0 +1,7 @@
+.card {
+  border: 1px solid var(--kinga-border);
+  border-radius: var(--kinga-radius-lg);
+  background: var(--kinga-surface);
+  color: var(--kinga-fg);
+  padding: 1.25rem;
+}

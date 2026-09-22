@@ -1,0 +1,89 @@
+.knob {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--kinga-space-2);
+}
+
+.md {
+  --_size: 4rem;
+}
+
+.sm {
+  --_size: 3rem;
+}
+
+.control {
+  position: relative;
+  width: var(--_size);
+  height: var(--_size);
+  border-radius: 50%;
+  cursor: ns-resize;
+  touch-action: none;
+  user-select: none;
+}
+
+.control:focus-visible {
+  outline: 2px solid var(--kinga-fg);
+  outline-offset: 2px;
+}
+
+.control[aria-disabled="true"] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Scale around the dial; ticks up to the current value are lit. */
+.ticks {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.tick {
+  stroke: color-mix(in srgb, var(--kinga-fg) 25%, transparent);
+  stroke-width: 2;
+}
+
+.tickLit {
+  stroke: var(--kinga-fg);
+}
+
+/* The cap: a round key with the same hard lip as every other key. */
+.dial {
+  position: absolute;
+  inset: 20%;
+  border: 1px solid var(--kinga-border);
+  border-radius: 50%;
+  background: var(--kinga-control);
+  box-shadow: var(--kinga-key-edge);
+}
+
+/*
+ * Rotates as a layer so the lip (lighting) stays put while the index turns.
+ * Inset past the 2px lip so it spins around the face's centre, not the cap's.
+ */
+.pointer {
+  position: absolute;
+  inset: 0 0 2px;
+}
+
+.pointer::after {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: calc(50% - 1px);
+  width: 2px;
+  height: 32%;
+  border-radius: 1px;
+  background: var(--kinga-primary);
+}
+
+.value {
+  color: var(--kinga-fg);
+  font-family: var(--kinga-font-mono);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}

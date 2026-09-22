@@ -1,0 +1,93 @@
+.meter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--kinga-space-2);
+  min-width: 0;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--kinga-space-3);
+}
+
+.value {
+  color: var(--kinga-fg);
+  font-family: var(--kinga-font-mono);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* VU-meter: discrete segments in a recessed slot, never a smooth fill. */
+.bar {
+  position: relative;
+  display: flex;
+  gap: 2px;
+  box-sizing: border-box;
+  height: 0.875rem;
+  padding: 2px;
+  border: 1px solid var(--kinga-border);
+  border-radius: var(--kinga-radius-sm);
+  background: var(--kinga-sunken);
+  box-shadow: var(--kinga-recess-edge);
+  overflow: hidden;
+}
+
+.segment {
+  flex: 1;
+  border-radius: 1px;
+  background: color-mix(in srgb, var(--kinga-fg) 10%, transparent);
+}
+
+/* Zone tint: unlit segments hint at the range they belong to. */
+.warning {
+  background: color-mix(in srgb, var(--kinga-warning) 25%, transparent);
+}
+
+.danger {
+  background: color-mix(in srgb, var(--kinga-danger) 25%, transparent);
+}
+
+.lit {
+  background: var(--kinga-fg);
+}
+
+.lit.warning {
+  background: var(--kinga-warning);
+}
+
+.lit.danger {
+  background: var(--kinga-danger);
+}
+
+/* Indeterminate progress: a block of lit segments stepping across the slot. */
+.sweep {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 0;
+  width: 20%;
+  border-radius: 1px;
+  background: var(--kinga-fg);
+  animation: sweep 1.4s steps(10) infinite;
+}
+
+@keyframes sweep {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(500%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sweep {
+    left: 2px;
+    right: 2px;
+    width: auto;
+    opacity: 0.35;
+    animation: none;
+  }
+}

@@ -1,0 +1,38 @@
+.textarea {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-height: 5.5rem;
+  border: 1px solid var(--kinga-border);
+  border-radius: var(--kinga-radius);
+  background: var(--kinga-surface);
+  color: var(--kinga-fg);
+  padding: var(--kinga-space-2) var(--kinga-space-3);
+  font-family: var(--kinga-font-sans);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.textarea::placeholder {
+  color: var(--kinga-muted);
+}
+
+.textarea:hover:not(:disabled) {
+  border-color: var(--kinga-muted);
+}
+
+.textarea:focus-visible {
+  border-color: var(--kinga-fg);
+  outline: 2px solid var(--kinga-primary);
+  outline-offset: 1px;
+}
+
+.textarea[aria-invalid="true"] {
+  border-color: var(--kinga-danger);
+}
+
+.textarea:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

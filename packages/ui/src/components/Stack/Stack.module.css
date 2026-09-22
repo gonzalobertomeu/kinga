@@ -1,0 +1,16 @@
+.stack {
+  display: flex;
+  gap: var(--_gap);
+}
+
+.vertical {
+  flex-direction: column;
+}
+
+.horizontal {
+  flex-direction: row;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}

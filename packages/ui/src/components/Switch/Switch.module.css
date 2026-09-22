@@ -1,0 +1,78 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--kinga-space-2);
+  color: var(--kinga-fg);
+  font-family: var(--kinga-font-sans);
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+/* A recessed slot with a key that slides across and lights up when on. */
+.track {
+  position: relative;
+  flex: none;
+  box-sizing: border-box;
+  width: 2.25rem;
+  height: 1.25rem;
+  border: 1px solid var(--kinga-border);
+  border-radius: var(--kinga-radius);
+  background: var(--kinga-sunken);
+  box-shadow: var(--kinga-recess-edge);
+}
+
+/* The real checkbox covers the track: clicks, focus and semantics stay native. */
+.input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+/*
+ * A key inside the recessed slot, so it follows the in-tray rule (like Select
+ * options): no outline, raised face, on-sunken lip. It sits 2px in from every
+ * wall — clear of the slot's top lip. Its radius matches the slot's inner curve
+ * (outer radius − border) rather than the strictly concentric value, which at
+ * this size reads as a sharp corner.
+ */
+.thumb {
+  --_gap: 2px;
+
+  position: absolute;
+  top: var(--_gap);
+  left: var(--_gap);
+  width: calc(50% - var(--_gap) * 1.5);
+  height: calc(100% - var(--_gap) * 2);
+  border-radius: calc(var(--kinga-radius) - 1px);
+  background: var(--kinga-raised);
+  box-shadow: var(--kinga-key-edge-on-sunken);
+  pointer-events: none;
+  transition:
+    transform 120ms ease-out,
+    background-color 120ms ease-out;
+}
+
+.input:checked + .thumb {
+  transform: translateX(calc(100% + var(--_gap)));
+  background: var(--kinga-primary);
+}
+
+.track:has(.input:focus-visible) {
+  outline: 2px solid var(--kinga-fg);
+  outline-offset: 2px;
+}
+
+.wrapper:has(.input:disabled) {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thumb {
+    transition: none;
+  }
+}
