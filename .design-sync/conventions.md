@@ -7,7 +7,7 @@
 **Compose with the primitives, not inline styles.** Layout = `Stack`; text = `Heading` / `Text` / `Label`; forms = `Field` around each control. Only reach for `style` for widths or grid layouts, and then use tokens.
 
 ```jsx
-const { Stack, Card, Label, Heading, Text, Badge, Field, Input, Select, RadioGroup, Radio, Button, Divider } = window.KingaUi;
+const { Stack, Card, Label, Heading, Text, Badge, Field, Input, Select, SegmentedControl, Switch, Button, Divider } = window.KingaUi;
 function App() {
   return (
     <div data-kinga-theme="light" style={{ minHeight: '100vh', padding: 'var(--kinga-space-6)' }}>
@@ -27,10 +27,9 @@ function App() {
           <Field label="Format">
             <Select defaultValue="wav"><option value="wav">WAV</option><option value="flac">FLAC</option></Select>
           </Field>
-          <RadioGroup label="Channels" direction="horizontal">
-            <Radio value="mono" label="Mono" defaultChecked />
-            <Radio value="stereo" label="Stereo" />
-          </RadioGroup>
+          <SegmentedControl label="Channels" defaultValue="mono"
+            options={[{ value: 'mono', label: 'Mono' }, { value: 'stereo', label: 'Stereo' }]} />
+          <Switch label="Monitor input" defaultChecked />
           <Divider />
           <Stack direction="horizontal" gap={2} justify="end">
             <Button variant="secondary">Cancel</Button>
@@ -47,6 +46,13 @@ function App() {
 - **Layout** — `Stack` (`direction` vertical|horizontal, `gap` 0–8 on the space scale, default 3; `align`, `justify` start|center|end|between, `wrap`). `Divider` (`orientation`).
 - **Type** — `Heading` (`level` 1|2|3; `as` to decouple the tag). `Text` (`size` sm|md|lg, `tone` default|muted; renders `p`, `as` span|div). `Label` — mono uppercase caption; `as="span"` for section captions like `01 — Output`. None have margins — space them with `Stack`.
 - **Forms** — wrap every `Input` / `Select` / `Textarea` in `Field` (`label`, `hint`, `error`, `required`); it wires id and aria automatically and `error` turns the border red. `Checkbox` and `Radio` take a `label` string; group radios in `RadioGroup` (`label`, `name`, `direction`). `Select` is a dropdown key sized to its content (full width inside a `Field`); its styled open list needs Chromium 135+.
+- **Instrument controls** — pick by job, not by look:
+  - `Switch` (`label`) — a setting that applies immediately. Use `Checkbox` inside forms that are submitted.
+  - `SegmentedControl` (`options` `[{value,label}]`, `value`/`defaultValue`, `onChange(value)`, `label`) — one of 2–5 modes; prefer it over `RadioGroup` for view/mode switches.
+  - `Slider` (`min` `max` `step`, `value`/`defaultValue`, `onChange(value)`, `ticks`, `formatValue`) — a continuous value; goes inside `Field`.
+  - `NumberStepper` (`min` `max` `step`, `value`/`defaultValue`, `onChange(value)`) — exact numeric entry (tempo, quantity); goes inside `Field`.
+  - `Knob` (`min` `max` `step`, `label`, `size` sm|md, `formatValue`) — compact rotary control for dense parameter panels; lay several out in a horizontal `Stack`.
+  - `Meter` (`value`, `min`, `max`, `warning`, `danger`, `label`, `showValue`) — read-only level; `Progress` (`value`, omit for indeterminate) — task completion.
 - **Actions & display** — `Button` (`variant` primary|secondary; at most one primary per view). `Badge` (`variant` default|success|warning|danger). `Card` — bordered `surface` container.
 
 **Tokens** (`var(--kinga-*)`). Color, light / dark:
@@ -56,7 +62,7 @@ function App() {
 | `bg` / `fg` | page background / text | `#f2f1ed`·`#1a1a1a` / `#161615`·`#ecebe6` |
 | `surface` | Card, Input, panels | `#fbfaf7` / `#1f1f1d` |
 | `control` | secondary Button, Select face | `#e3e1db` / `#2e2e2b` |
-| `sunken` / `raised` | recessed trays / keys rising out of them | `#d9d7d0`·`#f7f6f2` / `#232321`·`#3d3d39` |
+| `sunken` / `raised` | recessed trays / keys rising out of them (`--kinga-key-edge-on-sunken` for their lip) | `#d9d7d0`·`#f7f6f2` / `#232321`·`#3d3d39` |
 | `primary` (+`-fg`) | the one primary action | `#ff5a1f` |
 | `border` / `muted` | hairlines / secondary text | `#d4d2cb`·`#6e6c66` / `#3a3a36`·`#9a988f` |
 | `success` `warning` `danger` (+`-fg`) | state only | see `_ds_bundle.css` |

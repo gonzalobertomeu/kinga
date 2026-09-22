@@ -11,7 +11,9 @@
 
 ## Re-sync risks
 
-- 15 components as of 2026-09-22 (Badge, Button, Card, Checkbox, Divider, Field, Heading, Input, Label, Radio, RadioGroup, Select, Stack, Text, Textarea), 38 stories, all graded `match` story-by-story. Single `components` group → `components/components/<Name>/`.
+- 22 components as of 2026-09-22 (adds Knob, Meter, NumberStepper, Progress, SegmentedControl, Slider, Switch), 56 stories, all graded `match` story-by-story. Single `components` group → `components/components/<Name>/`.
+- `Meter` and `Progress` share one source folder (`Meter/`) but sync as two components via separate story titles — same pattern as Radio/RadioGroup.
+- Captures run under reduced motion, so `Progress › Indeterminate` is graded on its static fallback; the animated stepping sweep is never visually verified. Same for interaction-only behaviour (Knob drag/keys, NumberStepper clamping) — covered by `Knob.test.tsx` and manual browser checks, not grades.
 - `Radio` and `RadioGroup` live in one source folder but sync as two components (separate story files titled `Components/Radio` / `Components/RadioGroup`). Keep the titles split or one of them stops syncing.
 - `Field` wiring (id/aria into the child control) is invisible to the compare harness — it's covered by `Field.test.tsx`, not by grades.
 - `titleMap: {"Colors": null}` excludes `Foundations/Colors` (a token palette page, not a component). New foundation pages need the same treatment or they'll surface as `[TITLE_UNMAPPED]`/bogus components.
