@@ -1,0 +1,17 @@
+.divider {
+  flex: none;
+  margin: 0;
+  border: none;
+  background: var(--kinga-border);
+}
+
+.horizontal {
+  width: 100%;
+  height: 1px;
+}
+
+.vertical {
+  align-self: stretch;
+  width: 1px;
+  height: auto;
+}

@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Label } from '../components/Label';
+import { Stack } from '../components/Stack';
 import { type ColorToken, lightColors } from './colors';
 
 const toCssVar = (token: string) =>
@@ -23,26 +25,14 @@ function Palette() {
               background: `var(${toCssVar(token)})`,
             }}
           />
-          <div
-            style={{
-              marginTop: '0.5rem',
-              fontFamily: 'var(--kinga-font-mono)',
-              fontSize: '0.6875rem',
-              letterSpacing: '0.06em',
-              textTransform: 'uppercase',
-            }}
-          >
-            {toCssVar(token).replace('--kinga-', '')}
-          </div>
-          <div
-            style={{
-              fontFamily: 'var(--kinga-font-mono)',
-              fontSize: '0.6875rem',
-              color: 'var(--kinga-muted)',
-            }}
-          >
-            {toCssVar(token)}
-          </div>
+          <Stack gap={0} style={{ marginTop: 'var(--kinga-space-2)' }}>
+            <Label as="span" style={{ color: 'var(--kinga-fg)' }}>
+              {toCssVar(token).replace('--kinga-', '')}
+            </Label>
+            <Label as="span" style={{ textTransform: 'none' }}>
+              {toCssVar(token)}
+            </Label>
+          </Stack>
         </div>
       ))}
     </div>

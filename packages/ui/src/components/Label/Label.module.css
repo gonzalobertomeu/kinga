@@ -1,0 +1,13 @@
+/* Instrument label: mono, uppercase, tracked out — the way TE labels a device. */
+.label {
+  display: block;
+  margin: 0;
+  padding: 0;
+  color: var(--kinga-muted);
+  font-family: var(--kinga-font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}

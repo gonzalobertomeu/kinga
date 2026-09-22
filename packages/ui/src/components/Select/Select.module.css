@@ -37,6 +37,10 @@
   outline-offset: 2px;
 }
 
+.select[aria-invalid="true"] {
+  border-color: var(--kinga-danger);
+}
+
 .select:disabled {
   opacity: 0.4;
   box-shadow: none;

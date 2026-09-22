@@ -1,4 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Heading } from '../Heading';
+import { Label } from '../Label';
+import { Stack } from '../Stack';
+import { Text } from '../Text';
 import { Card } from './Card';
 
 const meta = {
@@ -8,24 +12,13 @@ const meta = {
   args: {
     style: { maxWidth: '20rem' },
     children: (
-      <>
-        <div
-          style={{
-            fontFamily: 'var(--kinga-font-mono)',
-            fontSize: '0.6875rem',
-            letterSpacing: '0.06em',
-            textTransform: 'uppercase',
-            color: 'var(--kinga-muted)',
-            marginBottom: '0.5rem',
-          }}
-        >
-          01 — Output
-        </div>
-        <h3 style={{ margin: '0 0 0.25rem', fontSize: '1rem', fontWeight: 500 }}>Card title</h3>
-        <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--kinga-muted)' }}>
+      <Stack gap={1}>
+        <Label as="span">01 — Output</Label>
+        <Heading level={3}>Card title</Heading>
+        <Text size="sm" tone="muted">
           Some supporting content goes here.
-        </p>
-      </>
+        </Text>
+      </Stack>
     ),
   },
 } satisfies Meta<typeof Card>;

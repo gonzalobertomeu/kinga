@@ -43,6 +43,16 @@
 :root {
   --kinga-font-sans: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
   --kinga-font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  /* 4px grid. Use these for every gap, padding and margin. */
+  --kinga-space-0: 0px;
+  --kinga-space-1: 4px;
+  --kinga-space-2: 8px;
+  --kinga-space-3: 12px;
+  --kinga-space-4: 16px;
+  --kinga-space-5: 24px;
+  --kinga-space-6: 32px;
+  --kinga-space-7: 48px;
+  --kinga-space-8: 64px;
   --kinga-radius-sm: 2px;
   --kinga-radius: 4px;
   --kinga-radius-lg: 6px;
