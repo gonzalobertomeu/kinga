@@ -1,0 +1,17 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid var(--kinga-border, #2a2e35);
+  background: var(--kinga-primary, #5b8cff);
+  color: var(--kinga-primary-fg, #0b0d10);
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,27 @@
+{
+  "name": "@kinga/monorepo",
+  "private": true,
+  "version": "0.0.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "packageManager": "bun@1.4.2",
+  "engines": {
+    "bun": ">=1.4.2"
+  },
+  "scripts": {
+    "build": "nx run-many -t build",
+    "test": "nx run-many -t test",
+    "typecheck": "nx run-many -t typecheck",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "graph": "nx graph"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.14",
+    "@types/bun": "^1.4.2",
+    "nx": "^23.2.1",
+    "typescript": "^7.0.2"
+  }
+}
