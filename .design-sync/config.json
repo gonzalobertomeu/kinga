@@ -6,5 +6,10 @@
   "storybookConfigDir": "packages/ui/.storybook",
   "buildCmd": "bun run --cwd packages/ui build",
   "cssEntry": "dist/index.css",
-  "readmeHeader": ".design-sync/conventions.md"
+  "readmeHeader": ".design-sync/conventions.md",
+  "overrides": {
+    "Input": {
+      "cardMode": "column"
+    }
+  }
 }

@@ -11,6 +11,9 @@
 
 ## Re-sync risks
 
-- Only one component (`Button`) exists in this DS today — the roster-wide capture, solo phase, and fan-out sections of the skill were all trivially satisfied by grading this single component. Re-evaluate scoping guidance (solo-phase diversity picks, fan-out batching) once more components exist.
-- `docs: 0/1 components matched` in the build log — no JSDoc/docs source was matched for `Button`. Not investigated (no doc comments exist on `Button` yet); harmless today, but if per-component docs are expected in the future, check `cfg.docsMap`.
-- The `cssEntry` override may become unnecessary (or need adjusting) once the DS has enough components that the real `_ds_bundle.css` naturally exceeds 500 bytes — re-check the `[CSS_PLACEHOLDER]` heuristic then.
+- 6 components as of 2026-09-22 (Button, Badge, Card, Checkbox, Input, Select), 14 stories, all graded `match` story-by-story (no sibling-trust). A single `components` group — every export lands under `components/components/<Name>/`.
+- `cfg.overrides.Input.cardMode: "column"`: Input is `width: 100%`, so its grid card overflowed (`[GRID_OVERFLOW] wide`). Select is also `width: 100%` but wasn't flagged — if it ever is, apply the same override.
+- Components are dark-theme only (fg `#f5f6f7`, surface `#14171b`) and ship no page background. On the white storybook/preview canvas the Checkbox label is near-invisible in BOTH panels — graded `match` because they agree. Not a sync bug; a real DS gap (no light theme / no root background).
+- `docs: 0/6 components matched` — still no JSDoc on any component; add doc comments if richer `.prompt.md` content is wanted.
+- `cssEntry: "dist/index.css"` is now 2.1 KB, above the `<500B` stub heuristic; the override is harmless and kept.
+- Adding a story or token requires rebuilding BOTH `dist/` (`buildCmd`) and `.design-sync/sb-reference` — a stale reference triggers a reference-drift canary on Button-style carried components.
