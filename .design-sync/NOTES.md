@@ -11,7 +11,9 @@
 
 ## Re-sync risks
 
-- 6 components as of 2026-09-22 (Badge, Button, Card, Checkbox, Input, Select), 16 stories, all graded `match` story-by-story after the Braun/TE restyle. Single `components` group → `components/components/<Name>/`.
+- 15 components as of 2026-09-22 (Badge, Button, Card, Checkbox, Divider, Field, Heading, Input, Label, Radio, RadioGroup, Select, Stack, Text, Textarea), 38 stories, all graded `match` story-by-story. Single `components` group → `components/components/<Name>/`.
+- `Radio` and `RadioGroup` live in one source folder but sync as two components (separate story files titled `Components/Radio` / `Components/RadioGroup`). Keep the titles split or one of them stops syncing.
+- `Field` wiring (id/aria into the child control) is invisible to the compare harness — it's covered by `Field.test.tsx`, not by grades.
 - `titleMap: {"Colors": null}` excludes `Foundations/Colors` (a token palette page, not a component). New foundation pages need the same treatment or they'll surface as `[TITLE_UNMAPPED]`/bogus components.
 - The `.storybook/preview.tsx` decorator is bundled as the preview wrapper. It themes `document.body` via `data-kinga-theme` — NOT a sized wrapper. A wrapper with `minHeight: 100vh` made every card cell 848px tall with a tiny component; theming `<html>` instead left the preview card's own white `<body>` on top. Keep it on `body`.
 - No `cfg.provider`: components need no wrapper (light tokens are on `:root`), so the decorator is harness-only (canvas bg + padding). README wrap guidance lives in `conventions.md`.
