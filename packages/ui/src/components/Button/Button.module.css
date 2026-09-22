@@ -1,17 +1,48 @@
+/* A physical key: flat face, 1px edge, a bottom lip that disappears when pressed. */
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 6px;
-  border: 1px solid var(--kinga-border, #2a2e35);
-  background: var(--kinga-primary, #5b8cff);
-  color: var(--kinga-primary-fg, #0b0d10);
-  font-weight: 600;
-  padding: 0.5rem 1rem;
+  gap: 0.5rem;
+  min-height: 2.25rem;
+  padding: 0 1rem;
+  border: 1px solid var(--kinga-border);
+  border-radius: var(--kinga-radius);
+  box-shadow: var(--kinga-key-edge);
+  font-family: var(--kinga-font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1;
   cursor: pointer;
+  transition:
+    transform 60ms ease-out,
+    box-shadow 60ms ease-out;
+}
+
+.primary {
+  background: var(--kinga-primary);
+  border-color: var(--kinga-primary);
+  color: var(--kinga-primary-fg);
+}
+
+.secondary {
+  background: var(--kinga-control);
+  color: var(--kinga-fg);
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--kinga-fg);
+  outline-offset: 2px;
 }
 
 .button:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
+  box-shadow: none;
   cursor: not-allowed;
 }

@@ -6,10 +6,25 @@ const meta = {
   component: Card,
   tags: ['autodocs'],
   args: {
+    style: { maxWidth: '20rem' },
     children: (
       <>
-        <h3 style={{ margin: '0 0 0.5rem' }}>Card title</h3>
-        <p style={{ margin: 0 }}>Some supporting content goes here.</p>
+        <div
+          style={{
+            fontFamily: 'var(--kinga-font-mono)',
+            fontSize: '0.6875rem',
+            letterSpacing: '0.06em',
+            textTransform: 'uppercase',
+            color: 'var(--kinga-muted)',
+            marginBottom: '0.5rem',
+          }}
+        >
+          01 — Output
+        </div>
+        <h3 style={{ margin: '0 0 0.25rem', fontSize: '1rem', fontWeight: 500 }}>Card title</h3>
+        <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--kinga-muted)' }}>
+          Some supporting content goes here.
+        </p>
       </>
     ),
   },

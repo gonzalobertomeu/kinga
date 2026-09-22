@@ -27,3 +27,20 @@ export const Disabled: Story = {
     disabled: true,
   },
 };
+
+export const ManyOptions: Story = {
+  args: {
+    defaultValue: 'tape',
+    children: (
+      <>
+        <option value="synth">Synth</option>
+        <option value="drum">Drum</option>
+        <option value="tape">Tape</option>
+        <option value="sampler" disabled>
+          Sampler
+        </option>
+        <option value="mixer">Mixer</option>
+      </>
+    ),
+  },
+};

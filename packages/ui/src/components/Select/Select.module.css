@@ -1,20 +1,157 @@
+/* Reads as a dropdown key: the secondary Button's face, plus a chevron. */
 .select {
-  display: inline-flex;
-  width: 100%;
-  border-radius: 6px;
-  border: 1px solid var(--kinga-border, #2a2e35);
-  background: var(--kinga-surface, #14171b);
-  color: var(--kinga-fg, #f5f6f7);
-  padding: 0.5rem 0.75rem;
-  font-size: 0.9rem;
+  appearance: none;
+  display: inline-block;
+  min-width: 8rem;
+  max-width: 100%;
+  min-height: 2.25rem;
+  border: 1px solid var(--kinga-border);
+  border-radius: var(--kinga-radius);
+  box-shadow: var(--kinga-key-edge);
+  /* Chevron drawn with gradients so it follows the theme's fg color. */
+  background:
+    linear-gradient(45deg, transparent 50%, var(--kinga-fg) 50%) calc(100% - 1rem) 50% / 5px 5px
+    no-repeat,
+    linear-gradient(135deg, var(--kinga-fg) 50%, transparent 50%) calc(100% - 0.75rem + 1px) 50% /
+    5px 5px no-repeat,
+    var(--kinga-control);
+  color: var(--kinga-fg);
+  padding: 0 2rem 0 1rem;
+  font-family: var(--kinga-font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition:
+    transform 60ms ease-out,
+    box-shadow 60ms ease-out;
+}
+
+.select:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: none;
 }
 
 .select:focus-visible {
-  outline: 2px solid var(--kinga-primary, #5b8cff);
-  outline-offset: 1px;
+  outline: 2px solid var(--kinga-fg);
+  outline-offset: 2px;
 }
 
 .select:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
+  box-shadow: none;
   cursor: not-allowed;
+}
+
+/*
+ * Customizable select (Chromium 135+): the dropdown itself becomes stylable.
+ * Other browsers keep the closed field above and the OS-native list.
+ */
+@supports (appearance: base-select) {
+  .select,
+  .select::picker(select) {
+    appearance: base-select;
+  }
+
+  .select {
+    --_hairline: color-mix(in srgb, var(--kinga-fg) 18%, transparent);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    min-width: 10rem;
+    background: var(--kinga-control);
+    padding: 0 0.875rem 0 1rem;
+  }
+
+  .select::picker-icon {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform 120ms ease-out;
+  }
+
+  .select:open::picker-icon {
+    transform: translateY(1px) rotate(-135deg);
+  }
+
+  /*
+   * Open: header + list become one recessed tray. The header squares off its
+   * bottom corners and drops its lip; the shadow falls inward from the top edge.
+   */
+  .select:open:not(:disabled) {
+    transform: none;
+    border-color: var(--kinga-fg);
+    /* No bottom border (not a transparent one) so the side walls run straight into the list. */
+    border-bottom-width: 0;
+    padding-bottom: 1px;
+    border-radius: var(--kinga-radius) var(--kinga-radius) 0 0;
+    background: var(--kinga-sunken);
+    box-shadow: var(--kinga-recess-edge);
+  }
+
+  .select::picker(select) {
+    width: anchor-size(width);
+    margin: 0;
+    padding: 0.25rem;
+    border: 1px solid var(--kinga-fg);
+    border-top: none;
+    border-radius: 0 0 var(--kinga-radius) var(--kinga-radius);
+    /* Hairline divider between header and list, inset from the tray walls. */
+    background:
+      linear-gradient(var(--_hairline), var(--_hairline)) 0.5rem 0 / calc(100% - 1rem) 1px no-repeat,
+      var(--kinga-sunken);
+    color: var(--kinga-fg);
+    box-shadow: none;
+  }
+
+  .select option {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    min-height: 2rem;
+    padding: 0 0.625rem;
+    border-radius: var(--kinga-radius);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition:
+      transform 60ms ease-out,
+      box-shadow 60ms ease-out;
+  }
+
+  /*
+   * Hovered option rises out of the tray as a key: a lighter face plus a hard lip.
+   * No outline — the tray is a constant ground, so the face contrast is enough.
+   * The lip is stepped up (only here) since the tray is darker than a Button's ground.
+   */
+  .select option:hover:not(:disabled),
+  .select option:focus-visible {
+    background: var(--kinga-raised);
+    box-shadow: inset 0 -2px 0 rgb(0 0 0 / 0.22);
+    outline: none;
+  }
+
+  .select option:active:not(:disabled) {
+    transform: translateY(1px);
+    box-shadow: none;
+  }
+
+  /* Selected option gets the same indicator lamp as a checked Checkbox. */
+  .select option::checkmark {
+    content: "";
+    order: -1;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 1px;
+    background: var(--kinga-primary);
+  }
+
+  .select option:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
 }
