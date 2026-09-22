@@ -11,9 +11,12 @@
 
 ## Re-sync risks
 
-- 6 components as of 2026-09-22 (Button, Badge, Card, Checkbox, Input, Select), 14 stories, all graded `match` story-by-story (no sibling-trust). A single `components` group — every export lands under `components/components/<Name>/`.
-- `cfg.overrides.Input.cardMode: "column"`: Input is `width: 100%`, so its grid card overflowed (`[GRID_OVERFLOW] wide`). Select is also `width: 100%` but wasn't flagged — if it ever is, apply the same override.
-- Components are dark-theme only (fg `#f5f6f7`, surface `#14171b`) and ship no page background. On the white storybook/preview canvas the Checkbox label is near-invisible in BOTH panels — graded `match` because they agree. Not a sync bug; a real DS gap (no light theme / no root background).
-- `docs: 0/6 components matched` — still no JSDoc on any component; add doc comments if richer `.prompt.md` content is wanted.
-- `cssEntry: "dist/index.css"` is now 2.1 KB, above the `<500B` stub heuristic; the override is harmless and kept.
-- Adding a story or token requires rebuilding BOTH `dist/` (`buildCmd`) and `.design-sync/sb-reference` — a stale reference triggers a reference-drift canary on Button-style carried components.
+- 6 components as of 2026-09-22 (Badge, Button, Card, Checkbox, Input, Select), 16 stories, all graded `match` story-by-story after the Braun/TE restyle. Single `components` group → `components/components/<Name>/`.
+- `titleMap: {"Colors": null}` excludes `Foundations/Colors` (a token palette page, not a component). New foundation pages need the same treatment or they'll surface as `[TITLE_UNMAPPED]`/bogus components.
+- The `.storybook/preview.tsx` decorator is bundled as the preview wrapper. It themes `document.body` via `data-kinga-theme` — NOT a sized wrapper. A wrapper with `minHeight: 100vh` made every card cell 848px tall with a tiny component; theming `<html>` instead left the preview card's own white `<body>` on top. Keep it on `body`.
+- No `cfg.provider`: components need no wrapper (light tokens are on `:root`), so the decorator is harness-only (canvas bg + padding). README wrap guidance lives in `conventions.md`.
+- `cfg.overrides.Input.cardMode: "column"` (Input is `width: 100%`). Select is now fit-content, so it no longer risks `[GRID_OVERFLOW]`.
+- Fonts: system stacks only; nothing ships. `[FONT_MISSING]` fires for any named family in `--kinga-font-*` that isn't a system font — "JetBrains Mono" was removed from the mono stack for that reason. If a real webfont is adopted, ship it via `cfg.extraFonts`.
+- Select's styled dropdown (`appearance: base-select`) only exists in Chromium 135+; previews/graders only see the closed field, so the open-tray styling is NOT verified by the compare harness — check it manually in Storybook after touching `Select.module.css`.
+- `docs: 0/6 components matched` — no JSDoc on components except Button's `variant` prop.
+- Rebuild BOTH `dist/` (`buildCmd`) and `.design-sync/sb-reference` after any DS source change; a stale reference trips the reference-drift canary.

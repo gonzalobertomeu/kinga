@@ -42,7 +42,7 @@
 
 :root {
   --kinga-font-sans: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
-  --kinga-font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  --kinga-font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --kinga-radius-sm: 2px;
   --kinga-radius: 4px;
   --kinga-radius-lg: 6px;

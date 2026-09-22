@@ -11,5 +11,8 @@
     "Input": {
       "cardMode": "column"
     }
+  },
+  "titleMap": {
+    "Colors": null
   }
 }

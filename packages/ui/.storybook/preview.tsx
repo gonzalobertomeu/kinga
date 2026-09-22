@@ -29,14 +29,16 @@ const preview: Preview = {
     theme: 'light',
   },
   decorators: [
-    (Story, context) => (
-      <div
-        data-kinga-theme={context.globals.theme ?? 'light'}
-        style={{ minHeight: '100vh', padding: '1.5rem' }}
-      >
-        <Story />
-      </div>
-    ),
+    (Story, context) => {
+      // Theme the whole canvas (background + type) rather than a sized wrapper,
+      // so stories keep their natural height.
+      document.body.dataset.kingaTheme = context.globals.theme ?? 'light';
+      return (
+        <div style={{ padding: '1.5rem' }}>
+          <Story />
+        </div>
+      );
+    },
   ],
 };
 
