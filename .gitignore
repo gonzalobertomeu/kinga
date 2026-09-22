@@ -11,3 +11,11 @@ out/
 coverage/
 storybook-static/
 *storybook.log
+
+# design-sync
+.design-sync/sb-reference/
+.design-sync/learnings/
+.design-sync/.cache/
+.design-sync/node_modules
+.ds-sync/
+ds-bundle/

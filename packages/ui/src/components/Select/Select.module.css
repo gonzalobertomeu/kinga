@@ -1,0 +1,20 @@
+.select {
+  display: inline-flex;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--kinga-border, #2a2e35);
+  background: var(--kinga-surface, #14171b);
+  color: var(--kinga-fg, #f5f6f7);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+.select:focus-visible {
+  outline: 2px solid var(--kinga-primary, #5b8cff);
+  outline-offset: 1px;
+}
+
+.select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

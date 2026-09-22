@@ -1,0 +1,10 @@
+{
+  "projectId": "841709f4-c283-41f7-a6dc-d24761bec036",
+  "shape": "storybook",
+  "pkg": "@kinga/ui",
+  "storybookStatic": ".design-sync/sb-reference",
+  "storybookConfigDir": "packages/ui/.storybook",
+  "buildCmd": "bun run --cwd packages/ui build",
+  "cssEntry": "dist/index.css",
+  "readmeHeader": ".design-sync/conventions.md"
+}

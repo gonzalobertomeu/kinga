@@ -1,0 +1,29 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.default {
+  background: var(--kinga-border, #2a2e35);
+  color: var(--kinga-fg, #f5f6f7);
+}
+
+.success {
+  background: var(--kinga-success, #22c55e);
+  color: var(--kinga-success-fg, #0b0d10);
+}
+
+.warning {
+  background: var(--kinga-warning, #eab308);
+  color: var(--kinga-warning-fg, #0b0d10);
+}
+
+.danger {
+  background: var(--kinga-danger, #ef4444);
+  color: var(--kinga-danger-fg, #f5f6f7);
+}
