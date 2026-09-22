@@ -21,6 +21,11 @@ Functional and minimal, after **Dieter Rams (Braun)** and **Teenage Engineering*
   keys: `control` face + key edge, drop 1px on `:active`. Things you type into
   (Input, Textarea) are flat `surface` fields. Open/active containers recess to
   `sunken`; items rising from them use `raised`.
+- **Keys inside keys.** A key's bottom 2px are its lip, not its face: centre
+  marks and indicators on the face (e.g. `calc(50% - 1px)`), not the whole cap.
+  A key inside a recess sits 2px clear of the walls, has no outline, uses
+  `--kinga-key-edge-on-sunken`, and takes the recess's inner radius
+  (`--kinga-radius - 1px`) — strict concentric radii read as sharp at this size.
 - **Lamps.** Selected state is an orange indicator (Checkbox square, Radio dot,
   Select option marker), not a filled control.
 - **Instrument labels.** Captions are mono, uppercase, 11px, `0.06em` tracking
@@ -40,6 +45,9 @@ Functional and minimal, after **Dieter Rams (Braun)** and **Teenage Engineering*
   Tokens live in `src/tokens/theme.css`, mirrored in `colors.ts` / `space.ts`;
   tests fail if they drift, so change both.
 - Form controls call `useFieldControl(props)` so `Field` can wire id/aria.
+- Numeric controls reuse `src/utils/number.ts` (`clamp`, `snapToStep`,
+  `litSegments`) and follow the controlled/uncontrolled pattern of Slider/Knob:
+  `value` + `onChange`, or `defaultValue` with internal state.
 - Prefer native platform features over JS (`<dialog>`, Popover API,
   `appearance: base-select`, `<details>`), as progressive enhancement.
 - Story titles are `Components/<ExportName>` — design-sync pairs stories to

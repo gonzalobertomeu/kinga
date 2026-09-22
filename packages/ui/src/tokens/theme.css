@@ -59,6 +59,8 @@
   /* Physical edges: hard, unblurred. A key's lip below; a recess's lip above. */
   --kinga-key-edge: inset 0 -2px 0 rgb(0 0 0 / 0.12);
   --kinga-recess-edge: inset 0 2px 0 rgb(0 0 0 / 0.08);
+  /* A key sitting inside a sunken tray: stronger lip, since the ground is darker. */
+  --kinga-key-edge-on-sunken: inset 0 -2px 0 rgb(0 0 0 / 0.22);
 }
 
 /* Any element carrying the attribute becomes a themed root: page color + type. */

@@ -1,0 +1,90 @@
+.group {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+/* A legend ignores flex gap, so space it explicitly — same rhythm as Field. */
+.group > .legend {
+  margin-bottom: var(--kinga-space-2);
+}
+
+/* A row of keys in one housing; the active key latches down and lights its lamp. */
+.keys {
+  display: inline-flex;
+  border: 1px solid var(--kinga-border);
+  border-radius: var(--kinga-radius);
+  overflow: hidden;
+}
+
+.segment {
+  position: relative;
+  display: flex;
+}
+
+.segment + .segment {
+  border-left: 1px solid var(--kinga-border);
+}
+
+/* Visually hidden but focusable: native radios give arrow-key navigation for free. */
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.key {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--kinga-space-2);
+  min-height: calc(2.25rem - 2px);
+  padding: 0 var(--kinga-space-4);
+  background: var(--kinga-control);
+  box-shadow: var(--kinga-key-edge);
+  color: var(--kinga-fg);
+  font-family: var(--kinga-font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    transform 60ms ease-out,
+    box-shadow 60ms ease-out;
+}
+
+.key::before {
+  content: "";
+  flex: none;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 1px;
+  background: color-mix(in srgb, var(--kinga-fg) 20%, transparent);
+}
+
+.input:not(:checked, :disabled) + .key:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.input:checked + .key {
+  background: var(--kinga-sunken);
+  box-shadow: var(--kinga-recess-edge);
+}
+
+.input:checked + .key::before {
+  background: var(--kinga-primary);
+}
+
+.input:focus-visible + .key {
+  outline: 2px solid var(--kinga-fg);
+  outline-offset: -4px;
+}
+
+.input:disabled + .key {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

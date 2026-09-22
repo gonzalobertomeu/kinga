@@ -130,12 +130,12 @@
   /*
    * Hovered option rises out of the tray as a key: a lighter face plus a hard lip.
    * No outline — the tray is a constant ground, so the face contrast is enough.
-   * The lip is stepped up (only here) since the tray is darker than a Button's ground.
+   * The lip is the on-sunken variant, since the tray is darker than a Button's ground.
    */
   .select option:hover:not(:disabled),
   .select option:focus-visible {
     background: var(--kinga-raised);
-    box-shadow: inset 0 -2px 0 rgb(0 0 0 / 0.22);
+    box-shadow: var(--kinga-key-edge-on-sunken);
     outline: none;
   }
 

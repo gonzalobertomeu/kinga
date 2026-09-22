@@ -4,8 +4,9 @@ What's left to build, in rough priority order. Every item follows the design
 language in [CLAUDE.md](./CLAUDE.md): functional, Braun/Teenage Engineering,
 one signal color, hard edges, 4px grid.
 
-**Built:** Badge, Button, Card, Checkbox, Divider, Field, Heading, Input, Label,
-Radio, RadioGroup, Select, Stack, Text, Textarea.
+**Built:** Badge, Button, Card, Checkbox, Divider, Field, Heading, Input, Knob,
+Label, Meter, NumberStepper, Progress, Radio, RadioGroup, SegmentedControl,
+Select, Slider, Stack, Switch, Text, Textarea.
 
 ---
 
@@ -14,16 +15,16 @@ Radio, RadioGroup, Select, Stack, Text, Textarea.
 The physical-instrument vocabulary. Cheap to build, and the pieces that most
 reinforce the system's character.
 
-- [ ] **Switch** — two-position toggle read as a physical switch; "on" lights the
+- [x] **Switch** — two-position toggle read as a physical switch; "on" lights the
   orange lamp. Native `<input type="checkbox" role="switch">`.
-- [ ] **SegmentedControl** — a row of keys; the active one latches down (same
+- [x] **SegmentedControl** — a row of keys; the active one latches down (same
   sunken/raised metaphor as the open Select). Radio-group semantics.
-- [ ] **Slider** — fader with tick marks and a mono numeric readout. Native
+- [x] **Slider** — fader with tick marks and a mono numeric readout. Native
   `<input type="range">` styled.
-- [ ] **NumberStepper** — mono value display between − / + keys.
-- [ ] **Meter / Progress** — segmented bar (VU-meter style), not a smooth fill.
-  Native `<meter>` / `<progress>` semantics.
-- [ ] **Knob** — rotary control, the most TE piece. Needs `role="slider"`,
+- [x] **NumberStepper** — mono value display between − / + keys.
+- [x] **Meter / Progress** — segmented bar (VU-meter style), not a smooth fill.
+  `role="meter"` / `role="progressbar"` (native elements can't hold the markup).
+- [x] **Knob** — rotary control, the most TE piece. Needs `role="slider"`,
   keyboard (arrows / PageUp / Home / End) and drag; hardest to make accessible,
   so build after Slider.
 
@@ -101,8 +102,8 @@ Needed by almost every product. More a11y work: focus, Escape, portals/top layer
 - [ ] **Layering tokens** — z-index scale for dropdown / popover / dialog / toast.
 - [ ] **Focus token** — shared focus-ring definition (today repeated per
   component: fg ring for keys, primary ring for fields).
-- [ ] **`--kinga-key-edge-on-sunken`** — the stronger key lip used inside the
-  Select tray, promoted to a token once a second use appears (Menu, Toolbar).
+- [x] **`--kinga-key-edge-on-sunken`** — the stronger key lip for keys inside a
+  sunken tray (Select options, Switch thumb). Use it for Menu / Toolbar too.
 - [ ] **Foundations pages** in Storybook — Spacing and Typography next to Colors
   (excluded from design-sync via `titleMap`).
 
@@ -114,7 +115,7 @@ Needed by almost every product. More a11y work: focus, Escape, portals/top layer
   Darken `danger` slightly or reserve it for borders/badges.
 - Checkbox is not wired into `Field` (it carries its own label). Decide whether
   a `CheckboxGroup` (fieldset, like RadioGroup) is needed.
-- No JSDoc on most components → design-sync reports `docs: 0/15`; the agent's
+- No JSDoc on most components → design-sync reports `docs: 0/N`; the agent's
   `.prompt.md` files would be richer with prop docs.
 - No visual regression tests; design-sync's compare harness is the only visual
   check, and it can't see open states (Select tray, hover keys).
